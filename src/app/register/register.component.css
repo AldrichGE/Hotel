@@ -1,0 +1,87 @@
+.register-page {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/path/to/your/background-image.jpg'); /* Adicione o caminho da sua imagem de fundo */
+    background-color: #ecf0f3; /* Cor de fundo em fallback */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topnavbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #ecf0f3;
+    box-shadow: -3px -3px 7px #ffffff,
+                3px 3px 5px #ceced1,
+                inset -3px -3px 7px #ffffff,
+                inset 3px 3px 5px #ceced1;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.topnavbar .logo img.logo-img {
+    width: 150px;
+    height: auto;
+}
+
+.register-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.register-form {
+    background: #ecf0f3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #ffffff,
+                3px 3px 5px #ceced1;
+    max-width: 400px;
+    width: 100%;
+}
+
+.register-form h2 {
+    color: #31344b;
+    margin-bottom: 20px;
+}
+
+.register-form label {
+    display: block;
+    color: #31344b;
+    margin: 10px 0 5px;
+}
+
+.register-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ceced1;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 7px #ffffff,
+                inset 3px 3px 5px #ceced1;
+    font-size: 16px;
+}
+
+.register-form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+    background-color: #2980b9;
+}

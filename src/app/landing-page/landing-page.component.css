@@ -1,0 +1,64 @@
+.landing-page {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/assets/landingpage.png');
+    display: flex;
+    flex-direction: column;
+    background-color: #ecf0f3;
+}
+
+.topnavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+    background-color: #ecf0f3;
+    box-shadow: -3px -3px 7px #ffffff,
+                3px 3px 5px #ceced1,
+                inset -3px -3px 7px #ffffff,
+                inset 3px 3px 5px #ceced1;
+}
+
+.topnavbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.topnavbar .logo img.logo-img {
+    width: 150px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.topnavbar .nav-buttons button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.topnavbar .nav-buttons button:hover {
+    background-color: #2980b9;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    padding-left: 80px;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.content h2 {
+    color: #f3f4f8;
+    font-size: 48px;    
+}

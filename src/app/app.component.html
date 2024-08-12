@@ -1,0 +1,38 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+</head>
+<div *ngIf="!isLandingPage() && !isLoginPage() && !isRegisterPage()">
+<div class="container">
+  <div class="side_bar">
+    <div class="title">
+      <div class="logo">
+        <img src="./assets/logo.png" alt="Logo" class="logo-img">
+      </div>
+    </div>
+    <ul>
+      <li><a [routerLink]="['newReserve']" routerLinkActive="router-link-active"><i class="fas fa-qrcode"></i>Nova Reserva</a></li>
+      <li><a [routerLink]="['myReserve']" routerLinkActive="router-link-active"><i class="fas fa-link"></i>Minhas Reservas</a></li>
+      <li><a href="#"><i class="fas fa-stream"></i>Cadastrar Quarto</a></li>
+      <li><a href="#"><i class="fas fa-calendar-week"></i>Cadastrar Serviço</a></li>
+      <li><a href="#"><i class="fas fa-question-circle"></i>Check-in</a></li>
+      <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+      <li><a href="#"><i class="fas fa-phone-volume"></i>Contact</a></li>
+      <li><a [routerLink]="['']" routerLinkActive="router-link-active"><i class="fas fa-comments"></i>Sair</a></li>
+    </ul>
+    <div class="media_icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+  
+  <div class="main_content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+</div>
+
+<div *ngIf="isLandingPage() || isLoginPage() || isRegisterPage()">
+<router-outlet></router-outlet>
+</div>

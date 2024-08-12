@@ -1,0 +1,99 @@
+.login-page {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/path/to/your/background-image.jpg');
+    background-color: #ecf0f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topnavbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #ecf0f3;
+    box-shadow: -3px -3px 7px #ffffff,
+                3px 3px 5px #ceced1,
+                inset -3px -3px 7px #ffffff,
+                inset 3px 3px 5px #ceced1;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.topnavbar .logo img.logo-img {
+    width: 150px;
+    height: auto;
+}
+
+.login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.login-form {
+    background: #ecf0f3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #ffffff,
+                3px 3px 5px #ceced1;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form h2 {
+    color: #31344b;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    color: #31344b;
+    margin: 10px 0 5px;
+}
+
+.login-form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ceced1;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 7px #ffffff,
+                inset 3px 3px 5px #ceced1;
+    font-size: 16px;
+}
+
+.login-form button {
+    background-color: #3498db;
+    margin: 5px;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: calc(50% - 10px);
+}
+
+.login-form button:hover {
+    background-color: #2980b9;
+}
+
+.login-form .back-button {
+    background-color: #e46c68;
+}
+
+.login-form .back-button:hover {
+    background-color: #811814;
+}

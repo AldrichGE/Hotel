@@ -1,0 +1,16 @@
+<div class="landing-page">
+    <nav class="topnavbar">
+      <div class="logo">
+        <img src="./assets/logo.png" alt="Logo" class="logo-img">
+      </div>
+      <div class="nav-buttons">
+        <a [routerLink]="['login']" routerLinkActive="router-link-active" ><button (click)="onLogin()">Login</button></a>
+        <a [routerLink]="['register']" routerLinkActive="router-link-active" ><button (click)="onRegister()">Registrar-se</button></a>
+      </div>
+    </nav>
+  
+    <div class="content">
+      <h2>O melhor hotel para você!</h2>
+    </div>
+  </div>
+  
