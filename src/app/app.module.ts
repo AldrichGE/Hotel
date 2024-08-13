@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewRoomComponent } from './new-room/new-room.component';
 import { NewServiceComponent } from './new-service/new-service.component';
+import { ReserveFormComponent } from './reserve-form/reserve-form.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NewServiceComponent } from './new-service/new-service.component';
     LandingPageComponent,
     NewRoomComponent,
     NewServiceComponent,
+    ReserveFormComponent,
   ],
   imports: [
     BrowserModule,

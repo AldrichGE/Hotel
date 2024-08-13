@@ -1,0 +1,42 @@
+<div class="outer-container">
+    <div class="centered-container">
+        <div class="form-container">
+            <h1>Reservar Quarto</h1>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="check-in">Check-In:</label>
+                    <input type="date" id="check-in" name="check-in" required>
+                </div>
+                <div class="form-group">
+                    <label for="check-out">Check-Out:</label>
+                    <input type="date" id="check-out" name="check-out" required>
+                </div>
+                <div class="form-group">
+                    <label>Serviços:</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="servicos" value="Wi-Fi">
+                            Wi-Fi
+                        </label>
+                        <label>
+                            <input type="checkbox" name="servicos" value="Café da Manhã">
+                            Café da Manhã
+                        </label>
+                        <label>
+                            <input type="checkbox" name="servicos" value="Estacionamento">
+                            Estacionamento
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações:</label>
+                    <textarea id="observacoes" name="observacoes" rows="4" placeholder="Digite suas observações aqui..."></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Reservar</button>
+                    <button class="cancel-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+.outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 99%;
+}
+
+.form-container {
+    background: #ecf0f3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
+    width: 115%;
+    max-width: 550px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #31344b;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #31344b;
+    font-weight: bold;
+}
+
+input[type="date"] {
+    width: 25%;
+    padding: 10px;
+    border: 1px solid #ceced1;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
+    font-size: 16px;
+}
+
+textarea {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ceced1;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
+    font-size: 16px;
+    resize: none;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-group label {
+    margin-bottom: 5px;
+    color: #31344b;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    max-width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button.cancel-button {
+    background-color: #e46c68;
+}
+
+button.cancel-button:hover {
+    background-color: #811814;
+}

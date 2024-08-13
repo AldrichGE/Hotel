@@ -8,7 +8,7 @@
         <p>{{ room.description }}</p>
         <p class="price">R$ {{ room.price.toFixed(2) }}</p>
         <p class="guests">Máx. hóspedes: {{ room.guests }}</p>
-        <button>Reservar</button>
+        <a [routerLink]="['/reserveForm']" routerLinkActive="router-link-active"><button>Reservar</button></a>
       </div>
     </div>
   </div>
