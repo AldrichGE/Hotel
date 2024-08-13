@@ -1,22 +1,28 @@
 <div class="register-page">
-    <nav class="topnavbar">
-        <div class="logo">
-            <img src="./assets/logo.png" alt="Logo" class="logo-img">
-        </div>
-    </nav>
-
     <div class="register-content">
-        <form class="register-form">
+        <div class="register-form">
+            <div class="logo">
+                <img src="./assets/logo.png" alt="Logo" class="logo-img">
+            </div>
             <h2>Registro</h2>
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirm-password">Confirmar Senha:</label>
-            <input type="password" id="confirm-password" name="confirm-password" required>
-            <button type="submit">Registrar</button>
-        </form>
+            <form>
+                <label for="fullName">Nome Completo</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Digite seu nome completo" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+                <label for="confirmPassword">Confirmar Senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha" required>
+
+                <button type="submit">Registrar</button>
+                <a [routerLink]="['']" routerLinkActive="router-link-active">
+                    <button type="button" class="back-button">Voltar</button>
+                </a>
+            </form>
+        </div>
     </div>
 </div>

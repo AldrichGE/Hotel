@@ -1,12 +1,9 @@
 <div class="login-page">
-    <nav class="topnavbar">
-        <div class="logo">
-            <img src="./assets/logo.png" alt="Logo" class="logo-img">
-        </div>
-    </nav>
-
     <div class="login-content">
         <div class="login-form">
+            <div class="logo">
+                <img src="./assets/logo.png" alt="Logo" class="logo-img">
+            </div>
             <h2>Login</h2>
             <form>
                 <label for="email">E-mail</label>
@@ -16,7 +13,7 @@
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
 
                 <button type="submit">Login</button>
-                <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="button" class="back-button" (click)="onBack()">Voltar</button></a>
+                <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="button" class="back-button">Voltar</button></a>
             </form>
         </div>
     </div>

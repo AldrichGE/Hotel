@@ -11,32 +11,12 @@
     align-items: center;
 }
 
-.topnavbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 50px;
-    background-color: #ecf0f3;
-    box-shadow: -3px -3px 7px #ffffff,
-                3px 3px 5px #ceced1,
-                inset -3px -3px 7px #ffffff,
-                inset 3px 3px 5px #ceced1;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-.topnavbar .logo img.logo-img {
-    width: 150px;
-    height: auto;
-}
-
 .login-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
+    width: 100%;
+    max-width: 450px;
 }
 
 .login-form {
@@ -45,11 +25,17 @@
     border-radius: 10px;
     box-shadow: -3px -3px 7px #ffffff,
                 3px 3px 5px #ceced1;
-    max-width: 500px;
+    max-width: 550px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-img {
+    width: 200px;
+    height: auto;
 }
 
 .login-form h2 {
@@ -61,6 +47,8 @@
     display: block;
     color: #31344b;
     margin: 10px 0 5px;
+    width: 90%;
+    text-align: left;
 }
 
 .login-form input {
@@ -74,16 +62,22 @@
     font-size: 16px;
 }
 
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
 .login-form button {
     background-color: #3498db;
-    margin: 5px;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: calc(50% - 10px);
+    width: 48%;
+    margin: 5px;
 }
 
 .login-form button:hover {
@@ -96,4 +90,14 @@
 
 .login-form .back-button:hover {
     background-color: #811814;
+}
+
+.button-group a {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+}
+
+.button-group a button {
+    width: 100%;
 }

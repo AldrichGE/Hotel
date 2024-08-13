@@ -1,0 +1,36 @@
+<div class="new-room-page">
+    <div class="new-room-content">
+        <form class="new-room-form" action="#">
+            <h2>Cadastrar Novo Quarto</h2>
+            <div class="half left cf">
+                <label for="type">Tipo</label>
+                <select id="type" name="type" required>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="suite">Suíte</option>
+                </select>
+
+                <label for="capacity">Capacidade</label>
+                <input type="number" id="capacity" name="capacity" placeholder="Capacidade" required>
+
+                <label for="floor">Andar</label>
+                <input type="number" id="floor" name="floor" placeholder="Andar" required>
+
+                <label for="price">Preço</label>
+                <input type="number" id="price" name="price" placeholder="Preço" step="0.01" required>
+            </div>
+            <div class="half right cf">
+                <label for="description">Descrição</label>
+                <textarea id="description" name="description" placeholder="Descrição do quarto" rows="4" required></textarea>
+
+                <label for="image" class="image-label">Anexar Imagem
+                    <input type="file" id="image" name="image" accept="image/*">
+                </label>
+            </div>
+            <div class="button-group">
+                <button type="submit">Cadastrar</button>
+                <button type="button" class="cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

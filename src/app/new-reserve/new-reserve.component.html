@@ -1,15 +1,15 @@
 <div class="catalog-container">
-    <h1>Quartos Disponíveis</h1>
-    <div class="rooms">
-      <div class="room-card" *ngFor="let room of rooms">
-        <img [src]="room.image" alt="Imagem do Quarto">
-        <div class="room-details">
-          <h2>{{ room.name }}</h2>
-          <p>{{ room.description }}</p>
-          <p class="price">{{ room.price | currency:'BRL' }}</p>
-          <button (click)="reserveRoom(room)">Reservar</button>
-        </div>
+  <h1>Catálogo de Quartos</h1>
+  <div class="rooms">
+    <div *ngFor="let room of rooms" class="room-card">
+      <img [src]="room.image" alt="{{ room.name }}">
+      <div class="room-details">
+        <h2>{{ room.name }}</h2>
+        <p>{{ room.description }}</p>
+        <p class="price">R$ {{ room.price.toFixed(2) }}</p>
+        <p class="guests">Máx. hóspedes: {{ room.guests }}</p>
+        <button>Reservar</button>
       </div>
     </div>
   </div>
-  
+</div>

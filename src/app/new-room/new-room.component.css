@@ -1,31 +1,31 @@
-.register-page {
+.new-room-page {
     height: 100vh;
     width: 100%;
     background-size: cover;
     background-position: center;
     background-image: url('/path/to/your/background-image.jpg');
-    background-color: #ecf0f3;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.register-content {
+.new-room-content {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 450px;
+    max-width: 600px;
 }
 
-.register-form {
+.new-room-form {
     background: #ecf0f3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: -3px -3px 7px #ffffff,
                 3px 3px 5px #ceced1;
-    max-width: 550px;
+    max-width: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -33,26 +33,23 @@
     text-align: center;
 }
 
-.logo-img {
-    width: 200px;
-    height: auto;
-}
-
-.register-form h2 {
+.new-room-form h2 {
     color: #31344b;
     margin-bottom: 20px;
 }
 
-.register-form label {
+.new-room-form label {
     display: block;
     color: #31344b;
     margin: 10px 0 5px;
-    width: 90%;
+    width: 100%;
     text-align: left;
 }
 
-.register-form input {
-    width: 90%;
+.new-room-form input,
+.new-room-form select,
+.new-room-form textarea {
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ceced1;
@@ -62,13 +59,26 @@
     font-size: 16px;
 }
 
+.new-room-form textarea {
+    resize: none;
+}
+
+.new-room-form input[type="file"] {
+    display: block;
+    margin-top: 5px;
+}
+
+.image-label {
+    text-align: center;
+}
+
 .button-group {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
 }
 
-.register-form button {
+.new-room-form button {
     background-color: #3498db;
     color: white;
     border: none;
@@ -80,24 +90,14 @@
     margin: 5px;
 }
 
-.register-form button:hover {
+.new-room-form button:hover {
     background-color: #2980b9;
 }
 
-.register-form .back-button {
+.new-room-form .cancel-button {
     background-color: #e46c68;
 }
 
-.register-form .back-button:hover {
+.new-room-form .cancel-button:hover {
     background-color: #811814;
-}
-
-.button-group a {
-    display: inline-block;
-    width: 48%;
-    text-align: center;
-}
-
-.button-group a button {
-    width: 100%;
 }

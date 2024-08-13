@@ -9,6 +9,9 @@ import { MyReservesComponent } from './my-reserves/my-reserves.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NewRoomComponent } from './new-room/new-room.component';
+import { NewServiceComponent } from './new-service/new-service.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MyReservesComponent,
     LoginComponent,
     RegisterComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    NewRoomComponent,
+    NewServiceComponent,
   ],
   imports: [
     BrowserModule,
