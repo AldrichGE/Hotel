@@ -12,7 +12,7 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
 
-                <button type="submit">Login</button>
+                <a [routerLink]="['newReserve']"><button type="submit">Login</button></a>
                 <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="button" class="back-button">Voltar</button></a>
             </form>
         </div>
