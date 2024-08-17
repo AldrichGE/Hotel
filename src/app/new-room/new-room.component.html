@@ -1,36 +1,66 @@
-<div class="new-room-page">
-    <div class="new-room-content">
-        <form class="new-room-form" action="#">
-            <h2>Cadastrar Novo Quarto</h2>
-            <div class="half left cf">
-                <label for="type">Tipo</label>
-                <select id="type" name="type" required>
-                    <option value="single">Single</option>
-                    <option value="double">Double</option>
-                    <option value="suite">Suíte</option>
-                </select>
-
-                <label for="capacity">Capacidade</label>
-                <input type="number" id="capacity" name="capacity" placeholder="Capacidade" required>
-
-                <label for="floor">Andar</label>
-                <input type="number" id="floor" name="floor" placeholder="Andar" required>
-
-                <label for="price">Preço</label>
-                <input type="number" id="price" name="price" placeholder="Preço" step="0.01" required>
+<div class="new-room-container">
+    <div class="new-room-form-container">
+        <h2>Cadastrar Novo Quarto</h2>
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type" name="type" required>
+                        <option value="single">Single</option>
+                        <option value="double">Double</option>
+                        <option value="suite">Suíte</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacidade</label>
+                    <input type="number" id="capacity" name="capacity" placeholder="Capacidade" required>
+                </div>
             </div>
-            <div class="half right cf">
-                <label for="description">Descrição</label>
-                <textarea id="description" name="description" placeholder="Descrição do quarto" rows="4" required></textarea>
-
-                <label for="image" class="image-label">Anexar Imagem
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="floor">Andar</label>
+                    <input type="number" id="floor" name="floor" placeholder="Andar" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Preço</label>
+                    <input type="number" id="price" name="price" placeholder="Preço" step="0.01" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" name="description" placeholder="Descrição do quarto" rows="4" required></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="image" class="image-label">Anexar Imagem</label>
                     <input type="file" id="image" name="image" accept="image/*">
-                </label>
+                </div>
             </div>
             <div class="button-group">
                 <button type="submit">Cadastrar</button>
                 <button type="button" class="cancel-button">Cancelar</button>
             </div>
         </form>
+    </div>
+
+    <div class="room-list-container">
+        <h2>Lista de Quartos</h2>
+        <ul class="room-list">
+            <li class="room-item">
+                <input type="checkbox" class="ui-checkbox">
+                Quarto 101 - Single - Capacidade: 2 - Andar: 1 - Preço: R$200
+                <button class="edit-button"><i class="fas fa-edit"></i></button>
+            </li>
+            <li class="room-item">
+                <input type="checkbox" class="ui-checkbox">
+                Quarto 202 - Suíte - Capacidade: 4 - Andar: 2 - Preço: R$500
+                <button class="edit-button"><i class="fas fa-edit"></i></button>
+            </li>
+        </ul>
+        <div class="delete-button-container">
+            <button type="button" class="delete-button">Excluir</button>
+        </div>
     </div>
 </div>

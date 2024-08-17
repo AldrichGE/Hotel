@@ -52,7 +52,7 @@
 }
 
 .register-form input {
-    width: 90%;
+    width: 91%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ceced1;
@@ -64,8 +64,10 @@
 
 .button-group {
     display: flex;
-    justify-content: space-between;
-    width: 90%;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .register-form button {
@@ -76,12 +78,13 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 48%;
-    margin: 5px;
+    width: 100%;
 }
 
 .register-form button:hover {
     background-color: #2980b9;
+    transition: all 0.5s;
+    transform: scale(0.98);
 }
 
 .register-form .back-button {
@@ -90,6 +93,8 @@
 
 .register-form .back-button:hover {
     background-color: #811814;
+    transition: all 0.5s;
+    transform: scale(0.98);
 }
 
 .button-group a {
@@ -100,4 +105,20 @@
 
 .button-group a button {
     width: 100%;
+}
+
+.register-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #31344b;
+}
+
+.register-text .register-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-text .register-link:hover {
+    color: #2980b9;
 }

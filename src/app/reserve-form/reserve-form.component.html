@@ -1,44 +1,55 @@
-<div class="outer-container">
-    <div class="centered-container">
-        <div class="form-container">
-            <h1>Reservar Quarto</h1>
-            <form action="#" method="post">
-                <div class="form-group">
-                    <label for="check-in">Check-In:</label>
-                    <input type="date" id="check-in" name="check-in" required>
-                </div>
-                <div class="form-group">
-                    <label for="check-out">Check-Out:</label>
-                    <input type="date" id="check-out" name="check-out" required>
-                </div>
-                <div class="form-group">
-                    <label>Serviços:</label>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" name="servicos" value="Wi-Fi">
-                            Wi-Fi
-                        </label>
-                        <label>
-                            <input type="checkbox" name="servicos" value="Café da Manhã">
-                            Café da Manhã
-                        </label>
-                        <label>
-                            <input type="checkbox" name="servicos" value="Estacionamento">
-                            Estacionamento
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="observacoes">Observações:</label>
-                    <textarea id="observacoes" name="observacoes" rows="4" placeholder="Digite suas observações aqui..."></textarea>
-                </div>
-                <div class="button-group">
-                    <button type="submit">Reservar</button>
-                    <a [routerLink]="['/newReserve']" routerLinkActive="router-link-active">
-                        <button type="button" class="cancel-button">Cancelar</button>
-                    </a>
-                </div>
-            </form>
-        </div>
+<div class="reserve-form-page">
+    <div class="reserve-form-content">
+        <h2>Efetuar Reserva</h2>
+        <form>
+            <div class="room-info">
+                <h3>Dados do Quarto</h3>
+                <p><strong>Tipo:</strong> Suíte</p>
+                <p><strong>Capacidade:</strong> 2 pessoas</p>
+                <p><strong>Andar:</strong> 3º Andar</p>
+                <p><strong>Preço por noite:</strong> R$ 300,00</p>
+            </div>
+
+            <label for="checkInDate">Data de Check-in</label>
+            <input type="date" id="checkInDate" name="checkInDate" required>
+
+            <label for="checkOutDate">Data de Check-out</label>
+            <input type="date" id="checkOutDate" name="checkOutDate" required>
+
+            <label for="days">Dias de Hospedagem</label>
+            <input type="number" id="days" name="days" min="1" required>
+
+            <label>Hospitalidades Extras</label>
+            <div class="hospitalities">
+                <label>
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="wifi"> Wi-Fi
+                </label>
+                <label>
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="breakfast"> Café da Manhã
+                </label>
+                <label>
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="parking"> Estacionamento
+                </label>
+                <label>
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="spa"> Acesso ao Spa
+                </label>
+                <label>
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="gym"> Academia
+                </label>
+                <label>
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="pool"> Piscina
+                </label>
+            </div>
+
+            <div class="total-value">
+                <label for="totalValue">Valor Total:</label>
+                <p id="totalValue">R$ 0,00</p>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Reservar</button>
+                <a [routerLink]="['/newReserve']" routerLinkActive="router-link-active"><button type="button" class="cancel-button">Cancelar</button></a>
+            </div>
+        </form>
     </div>
 </div>
