@@ -5,18 +5,22 @@
                 <img src="./assets/logo.png" alt="Logo" class="logo-img">
             </div>
             <h2>Login</h2>
-            <form>
+            <form (ngSubmit)="onLogin()">
                 <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <input type="email" id="email" name="email" [(ngModel)]="email" required>
+                <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
 
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                <input type="password" id="password" name="password" [(ngModel)]="password" required>
+                <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
 
                 <div class="button-group">
-                    <a [routerLink]="['newReserve']"><button type="submit">Login</button></a>
+                    <a><button type="submit" [disabled]="isFormInvalid()">Login</button></a>
                     <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="button" class="back-button">Voltar</button></a>
                 </div>
                 
+                <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+
                 <p class="register-text">Ainda não possui <a [routerLink]="['/register']" class="register-link">cadastro</a>?</p>
             </form>
         </div>

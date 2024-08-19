@@ -1,53 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../services/room/room.service';
 
 @Component({
   selector: 'app-new-reserve',
   templateUrl: './new-reserve.component.html',
   styleUrls: ['./new-reserve.component.css']
 })
-export class NewReserveComponent {
-  rooms = [
-    {
-      name: 'Quarto Individual',
-      description: 'Um quarto confortável para se passar a noite.',
-      price: 120,
-      guests: 1,
-      image: './assets/individual.png'
-    },
-    {
-      name: 'Quarto Casal Básico',
-      description: 'Um quarto aconchegante com uma cama de casal, ar-condicionado e Wi-Fi gratuito.',
-      price: 220,
-      guests: 2,
-      image: './assets/casal.png'
-    },
-    {
-      name: 'Quarto Família',
-      description: 'Um quarto aconchegante com uma cama de casal e uma beliche.',
-      price: 300,
-      guests: 4,
-      image: './assets/familia.png'
-    },
-    {
-      name: 'Quarto Solteiro Duplo',
-      description: 'Um quarto aconchegante com duas camas de solteiro.',
-      price: 260,
-      guests: 2,
-      image: './assets/solteiro.png'
-    },
-    {
-      name: 'Quarto Luxo',
-      description: 'Quarto espaçoso com varanda, vista para o mar, ar-condicionado e TV a cabo.',
-      price: 400,
-      guests: 3,
-      image: './assets/luxo.png'
-    },
-    {
-      name: 'Quarto Suíte Master',
-      description: 'Suíte com sala de estar, jacuzzi, minibar e vista panorâmica.',
-      price: 600,
-      guests: 4,
-      image: './assets/master.png'
-    }
-  ];
+export class NewReserveComponent implements OnInit {
+  rooms: any[] = [];
+  selectedRoom: any = null;
+
+  constructor(private roomService: RoomService) {}
+
+  ngOnInit(): void {
+    this.fetchRooms();
+  }
+
+  fetchRooms(): void {
+    this.roomService.getRooms().subscribe(
+      (data: any) => {
+        const roomTypeMapping: { [key: string]: string } = {
+          'SINGLE': 'Quarto Individual',
+          'DUPLO': 'Quarto Duplo',
+          'SUITE': 'Quarto Suíte'
+        };
+  
+        const roomImageMapping: { [key: string]: string[] } = {
+          'SINGLE': ['./assets/individual.png'],
+          'DUPLO': ['./assets/solteiro.png'],
+          'SUITE': ['./assets/luxo.png']
+        };
+  
+        this.rooms = data.map((room: any) => {
+          const images = roomImageMapping[room.type] || [];
+          const selectedImage = images.length ? images[Math.floor(Math.random() * images.length)] : '';
+  
+          return {
+            ...room,
+            name: roomTypeMapping[room.type] || room.name,
+            guests: room.capacity,
+            image: selectedImage || room.image
+          };
+        });
+      },
+      (error) => {
+        console.error('Erro ao buscar quartos:', error);
+      }
+    );
+  }
+
+  openReserveForm(room: any) {
+    this.selectedRoom = room;
+  }
+
+  closeReserveForm() {
+    this.selectedRoom = null;
+  }
 }

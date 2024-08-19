@@ -5,25 +5,76 @@
                 <img src="./assets/logo.png" alt="Logo" class="logo-img">
             </div>
             <h2>Registrar-se</h2>
-            <form>
-                <label for="email">Nome Completo</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu nome" required>
+            <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="firstName">Primeiro Nome</label>
+                        <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" placeholder="Digite seu primeiro nome" required pattern="^[a-zA-ZÀ-ÿ\s]+$" (input)="validateName($event)" #firstNameRef="ngModel">
+                        <span *ngIf="firstNameRef.invalid && firstNameRef.touched" class="error-message">Nome inválido</span>
+                    </div>
+                    <div class="form-field">
+                        <label for="lastName">Sobrenome</label>
+                        <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" placeholder="Digite seu sobrenome" required pattern="^[a-zA-ZÀ-ÿ\s]+$" (input)="validateName($event)" #lastNameRef="ngModel">
+                        <span *ngIf="lastNameRef.invalid && lastNameRef.touched" class="error-message">Sobrenome inválido</span>
+                    </div>
+                    <div class="form-field">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" [(ngModel)]="cpf" placeholder="Digite seu CPF" required pattern="^\d{11}$" (input)="validateCPF($event)" #cpfRef="ngModel">
+                        <span *ngIf="cpfRef.invalid && cpfRef.touched" class="error-message">CPF inválido</span>
+                    </div>
+                </div>
 
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Digite seu e-mail" required #emailRef="ngModel">
+                        <span *ngIf="emailRef.invalid && emailRef.touched" class="error-message">E-mail inválido</span>
+                    </div>
+                    <div class="form-field">
+                        <label for="birth">Data de Nascimento</label>
+                        <input type="date" id="birth" name="birth" [(ngModel)]="birth" required #birthRef="ngModel">
+                        <span *ngIf="birthRef.invalid && birthRef.touched" class="error-message">Data de nascimento inválida</span>
+                    </div>
+                </div>
 
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                <div class="form-group phone-group">
+                    <div class="form-field">
+                        <label for="ddi">DDI</label>
+                        <input type="text" id="ddi" name="ddi" [(ngModel)]="ddi" placeholder="DDI" required pattern="^\d{1,3}$" maxlength="3" (input)="validateNumberInput($event)" #ddiRef="ngModel">
+                    </div>
+                    <div class="form-field">
+                        <label for="ddd">DDD</label>
+                        <input type="text" id="ddd" name="ddd" [(ngModel)]="ddd" placeholder="DDD" required pattern="^\d{1,3}$" maxlength="3" (input)="validateNumberInput($event)" #dddRef="ngModel">
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Celular</label>
+                        <input type="tel" id="phone" name="phone" [(ngModel)]="phone" placeholder="Digite seu número de celular" required pattern="^\d+$" (input)="validateTel($event)" #phoneRef="ngModel">
+                        <span *ngIf="phoneRef.invalid && phoneRef.touched" class="error-message">Número de celular inválido</span>
+                    </div>
+                </div>
 
-                <label for="password">Confirmar Senha</label>
-                <input type="password" id="confirm-pass" name="confirm-pass" placeholder="Confirme sua senha" required>
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Digite sua senha" required #passwordRef="ngModel">
+                        <span *ngIf="passwordRef.invalid && passwordRef.touched" class="error-message">Senha obrigatória</span>
+                    </div>
+                    <div class="form-field">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirme sua senha" required #confirmPasswordRef="ngModel">
+                        <span *ngIf="confirmPasswordRef.invalid && confirmPasswordRef.touched" class="error-message">Confirmação de senha obrigatória</span>
+                    </div>
+                </div>
+                <div *ngIf="passwordMismatch" class="error-message">
+                    As senhas não coincidem.
+                </div>
 
                 <div class="button-group">
-                    <a [routerLink]="['newReserve']"><button type="submit">Registrar-se</button></a>
-                    <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="button" class="back-button">Voltar</button></a>
+                    <button type="submit" [disabled]="registerForm.invalid">Registrar-se</button>
+                    <a [routerLink]="['']" routerLinkActive="router-link-active"><button type="button" class="back-button">Voltar</button></a>
                 </div>
-                
-                <p class="register-text">Já possui cadastro?<a [routerLink]="['/login']" class="register-link"> Entrar.</a></p>
+
+                <p class="register-text">Já possui cadastro? <a [routerLink]="['/login']" class="register-link">Entrar.</a></p>
             </form>
         </div>
     </div>

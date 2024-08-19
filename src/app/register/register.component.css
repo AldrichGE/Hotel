@@ -3,12 +3,13 @@
     width: 100%;
     background-size: cover;
     background-position: center;
-    background-image: url('/path/to/your/background-image.jpg');
     background-color: #ecf0f3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .register-content {
@@ -16,21 +17,20 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 450px;
+    max-width: 800px;
 }
 
 .register-form {
     background: #ecf0f3;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: -3px -3px 7px #ffffff,
-                3px 3px 5px #ceced1;
-    max-width: 550px;
+    box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
+    max-width: 750px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    box-sizing: border-box;
 }
 
 .logo-img {
@@ -41,25 +41,69 @@
 .register-form h2 {
     color: #31344b;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-.register-form label {
-    display: block;
-    color: #31344b;
-    margin: 10px 0 5px;
-    width: 90%;
-    text-align: left;
-}
-
-.register-form input {
-    width: 91%;
-    padding: 10px;
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
     margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.form-field {
+    flex: 1;
+    min-width: calc(33.33% - 20px);
+}
+
+.form-field label {
+    color: #31344b;
+    margin-bottom: 5px;
+    width: 100%;
+    display: block;
+}
+
+.form-field input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ceced1;
     border-radius: 5px;
-    box-shadow: inset -3px -3px 7px #ffffff,
-                inset 3px 3px 5px #ceced1;
+    box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
     font-size: 16px;
+}
+
+.form-group.phone-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+}
+
+.phone-group .form-field {
+    min-width: auto;
+    flex: none;
+    position: relative;
+}
+
+#ddi, #ddd {
+    width: 50px;
+    flex: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.error-message.below {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
 }
 
 .button-group {
@@ -99,7 +143,7 @@
 
 .button-group a {
     display: inline-block;
-    width: 48%;
+    width: 100%;
     text-align: center;
 }
 
@@ -111,6 +155,7 @@
     margin-top: 15px;
     font-size: 14px;
     color: #31344b;
+    text-align: center;
 }
 
 .register-text .register-link {
@@ -121,4 +166,42 @@
 
 .register-text .register-link:hover {
     color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .register-form {
+        padding: 30px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-field {
+        min-width: 100%;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-form {
+        padding: 20px;
+    }
+
+    .logo-img {
+        width: 150px;
+    }
+
+    .register-form button {
+        width: 100%;
+    }
+
+    .button-group a {
+        width: 100%;
+    }
 }

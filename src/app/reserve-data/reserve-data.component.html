@@ -1,0 +1,40 @@
+<div class="reserve-data-overlay">
+  <div class="reserve-data-content">
+    <h2>{{ reservation.roomType }}</h2>
+    
+    <div class="reserve-data-info">
+      <div>
+        <p><strong>Cliente:</strong> {{ reservation.client }}</p>
+        <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn }}</p>
+        <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut }}</p>
+        <p>
+          <label for="status"><strong>Status da Reserva:</strong></label>
+          <select id="status" [(ngModel)]="reservation.status">
+            <option value="Confirmado">Confirmado</option>
+            <option value="Finalizada">Finalizada</option>
+            <option value="Cancelada">Cancelada</option>
+          </select>
+        </p>
+      </div>
+      <div>
+        <p><strong>Check-In:</strong> {{ reservation.checkIn }}</p>
+        <p><strong>Check-Out:</strong> {{ reservation.checkOut }}</p>
+        <p><strong>Diárias:</strong> {{ reservation.nights }}</p>
+        <p><strong>Valor Total:</strong> {{ reservation.totalValue | currency:'BRL' }}</p>
+      </div>
+    </div>
+    
+    <div class="button-group">
+      <button (click)="onCancel()" class="cancel-button">Cancelar Reserva</button>
+      <button (click)="onClose()">Fechar</button>
+    </div>
+    
+    <div *ngIf="showCancelConfirmation" class="cancel-confirmation-overlay">
+      <div class="cancel-confirmation-content">
+        <p>Tem certeza que deseja cancelar a reserva?</p>
+        <button class="confirm-button">Sim</button>
+        <button class="cancel-button" (click)="onCloseCancel()">Não</button>
+      </div>
+    </div>
+  </div>
+</div>

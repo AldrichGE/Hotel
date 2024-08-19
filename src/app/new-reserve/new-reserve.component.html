@@ -1,15 +1,17 @@
-<div class="catalog-container">
+<div class="catalog-container" [class.blur]="selectedRoom">
   <h1>Catálogo de Quartos</h1>
   <div class="rooms">
     <div *ngFor="let room of rooms" class="room-card">
       <img [src]="room.image" alt="{{ room.name }}">
       <div class="room-details">
         <h2>{{ room.name }}</h2>
-        <p>{{ room.description }}</p>
+        <p>{{ room.description }}.</p>
         <p class="price">R$ {{ room.price.toFixed(2) }}</p>
         <p class="guests">Máx. hóspedes: {{ room.guests }}</p>
-        <a [routerLink]="['/reserveForm']" routerLinkActive="router-link-active"><button>Reservar</button></a>
+        <button (click)="openReserveForm(room)">Reservar</button>
       </div>
     </div>
   </div>
 </div>
+
+<app-reserve-form *ngIf="selectedRoom" [room]="selectedRoom" (close)="closeReserveForm()"></app-reserve-form>

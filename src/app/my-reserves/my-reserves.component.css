@@ -1,5 +1,6 @@
 .reservation-card {
     display: flex;
+    flex-direction: row;
     align-items: center;
     background: #f3f3f3;
     padding: 10px;
@@ -13,7 +14,7 @@
 
 .room-image {
     width: 200px;
-    height: 150px;
+    height: 180px;
     border-radius: 8px;
     object-fit: cover;
     margin-right: 20px;
@@ -21,22 +22,35 @@
 
 .reservation-info {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    align-items: center;
 }
 
 .reservation-details h3 {
     color: #000;
-    margin: 0;
+    margin: 0 0 10px 0;
     font-size: 24px;
     font-weight: bold;
 }
 
-.reservation-details p {
-    color: #555;
+.reservation-table {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.reservation-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 5px;
+}
+
+.reservation-column p {
     margin: 5px 0;
-    font-size: 18px;
+    font-size: 15px;
+    color: #555;
 }
 
 .reservation-status {
@@ -45,8 +59,14 @@
     right: 15px;
 }
 
-.reservation-status .status {
+.status-finalizada {
     color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.status-aguardando {
+    color: #be2308;
     font-weight: bold;
     font-size: 16px;
 }
@@ -68,4 +88,71 @@
     background-color: #0056b3;
     transition: all 0.5s;
     transform: scale(0.98);
+}
+
+.my-reserves {
+    position: relative;
+}
+
+@media (max-width: 1146px) {
+    .reservation-action .view-more {
+        position: static;
+        width: auto;
+        margin-top: 10px;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .reservation-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .room-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .reservation-info {
+        width: 100%;
+    }
+
+    .reservation-table {
+        flex-direction: column;
+    }
+
+    .reservation-column {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .reservation-status {
+        position: static;
+        margin-top: 10px;
+    }
+
+    .reservation-action .view-more {
+        position: static;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .reservation-details h3 {
+        font-size: 20px;
+    }
+
+    .reservation-column p {
+        font-size: 14px;
+    }
+
+    .reservation-action .view-more {
+        padding: 10px;
+    }
 }

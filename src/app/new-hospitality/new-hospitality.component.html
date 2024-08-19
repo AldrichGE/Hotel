@@ -1,0 +1,68 @@
+<div class="new-hospitality-container">
+    <div class="new-hospitality-form-container" *ngIf="!isEditMode">
+        <h2>Cadastrar Nova Comodidade</h2>
+        <form #hospitalityForm="ngForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Nome do serviço" [(ngModel)]="newHospitality.name" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Preço</label>
+                    <input type="number" id="price" name="price" placeholder="Preço" [(ngModel)]="newHospitality.price" step="0.01" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" name="description" placeholder="Descrição do serviço" [(ngModel)]="newHospitality.description" rows="4" required></textarea>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" (click)="createHospitality()">Cadastrar</button>
+                <button type="button" class="cancel-button" (click)="resetForm()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!--Form de edição-->
+    <div class="new-hospitality-form-container" *ngIf="isEditMode">
+        <h2>Editar Serviço</h2>
+        <form #hospitalityForm="ngForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Nome do serviço" [(ngModel)]="selectedHospitality.name" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Preço</label>
+                    <input type="number" id="price" name="price" placeholder="Preço" [(ngModel)]="selectedHospitality.price" step="0.01" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" name="description" placeholder="Descrição do serviço" [(ngModel)]="selectedHospitality.description" rows="4" required></textarea>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" (click)="updateHospitality()">Salvar</button>
+                <button type="button" class="cancel-button" (click)="resetForm()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="hospitality-list-container">
+        <h2>Lista de Serviços</h2>
+        <ul class="hospitality-list">
+            <li class="hospitality-item" *ngFor="let hospitality of hospitalities">
+                <input type="checkbox" class="ui-checkbox" [(ngModel)]="hospitality.selected">
+                {{ hospitality.name }} - Preço: R${{ hospitality.price.toFixed(2) }}
+                <button class="edit-button" (click)="editHospitality(hospitality)"><i class="fas fa-edit"></i></button>
+            </li>
+        </ul>
+        <div class="delete-button-container">
+            <button type="button" class="delete-button" (click)="onDeleteHospitalities()">Excluir</button>
+        </div>
+    </div>
+</div>

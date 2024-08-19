@@ -8,6 +8,11 @@
   color: #31344b;
 }
 
+.catalog-container.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
 .rooms {
   display: flex;
   flex-wrap: wrap;

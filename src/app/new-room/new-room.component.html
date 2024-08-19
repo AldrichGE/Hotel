@@ -1,11 +1,11 @@
 <div class="new-room-container">
-    <div class="new-room-form-container">
+    <div class="new-room-form-container" *ngIf="!isEditMode">
         <h2>Cadastrar Novo Quarto</h2>
-        <form>
+        <form (ngSubmit)="onCreateRoom()">
             <div class="form-row">
                 <div class="form-group">
                     <label for="type">Tipo</label>
-                    <select id="type" name="type" required>
+                    <select id="type" name="type" [(ngModel)]="newRoom.type" required>
                         <option value="single">Single</option>
                         <option value="double">Double</option>
                         <option value="suite">Suíte</option>
@@ -13,23 +13,23 @@
                 </div>
                 <div class="form-group">
                     <label for="capacity">Capacidade</label>
-                    <input type="number" id="capacity" name="capacity" placeholder="Capacidade" required>
+                    <input type="number" id="capacity" name="capacity" [(ngModel)]="newRoom.capacity" placeholder="Capacidade" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="floor">Andar</label>
-                    <input type="number" id="floor" name="floor" placeholder="Andar" required>
+                    <input type="number" id="floor" name="floor" [(ngModel)]="newRoom.floor" placeholder="Andar" required>
                 </div>
                 <div class="form-group">
                     <label for="price">Preço</label>
-                    <input type="number" id="price" name="price" placeholder="Preço" step="0.01" required>
+                    <input type="number" id="price" name="price" [(ngModel)]="newRoom.price" placeholder="Preço" step="0.01" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group full-width">
                     <label for="description">Descrição</label>
-                    <textarea id="description" name="description" placeholder="Descrição do quarto" rows="4" required></textarea>
+                    <textarea id="description" name="description" [(ngModel)]="newRoom.description" placeholder="Descrição do quarto" rows="4" required></textarea>
                 </div>
             </div>
             <div class="form-row">
@@ -40,7 +40,54 @@
             </div>
             <div class="button-group">
                 <button type="submit">Cadastrar</button>
-                <button type="button" class="cancel-button">Cancelar</button>
+                <button type="button" class="cancel-button" (click)="resetForm()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!--Formulário de edição-->
+    <div class="new-room-form-container" *ngIf="isEditMode">
+        <h2>Editar Quarto</h2>
+        <form (ngSubmit)="onUpdateRoom()">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type" name="type" [(ngModel)]="selectedRoom.type" required>
+                        <option value="single">Single</option>
+                        <option value="double">Double</option>
+                        <option value="suite">Suíte</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacidade</label>
+                    <input type="number" id="capacity" name="capacity" [(ngModel)]="selectedRoom.capacity" placeholder="Capacidade" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="floor">Andar</label>
+                    <input type="number" id="floor" name="floor" [(ngModel)]="selectedRoom.floor" placeholder="Andar" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Preço</label>
+                    <input type="number" id="price" name="price" [(ngModel)]="selectedRoom.price" placeholder="Preço" step="0.01" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" name="description" [(ngModel)]="selectedRoom.description" placeholder="Descrição do quarto" rows="4" required></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="image" class="image-label">Anexar Imagem</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit">Salvar</button>
+                <button type="button" class="cancel-button" (click)="onCancelEdit()">Cancelar</button>
             </div>
         </form>
     </div>
@@ -48,19 +95,14 @@
     <div class="room-list-container">
         <h2>Lista de Quartos</h2>
         <ul class="room-list">
-            <li class="room-item">
-                <input type="checkbox" class="ui-checkbox">
-                Quarto 101 - Single - Capacidade: 2 - Andar: 1 - Preço: R$200
-                <button class="edit-button"><i class="fas fa-edit"></i></button>
-            </li>
-            <li class="room-item">
-                <input type="checkbox" class="ui-checkbox">
-                Quarto 202 - Suíte - Capacidade: 4 - Andar: 2 - Preço: R$500
-                <button class="edit-button"><i class="fas fa-edit"></i></button>
+            <li class="room-item" *ngFor="let room of rooms">
+                <input type="checkbox" class="ui-checkbox" [(ngModel)]="room.selected">
+                Quarto {{ room.id }} - {{ room.type }} - Capacidade: {{ room.capacity }} - Andar: {{ room.floor }} - Preço: R${{ room.price }}
+                <button class="edit-button" (click)="onEdit(room)"><i class="fas fa-edit"></i></button>
             </li>
         </ul>
         <div class="delete-button-container">
-            <button type="button" class="delete-button">Excluir</button>
+            <button type="button" class="delete-button" (click)="onDeleteRooms()">Excluir</button>
         </div>
     </div>
 </div>

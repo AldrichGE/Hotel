@@ -1,17 +1,31 @@
-<div class="reservation-card">
-    <img src="./assets/individual.png" alt="Imagem do Quarto" class="room-image">
+<div class="my-reserves">
+  <div *ngFor="let reservation of reservations" class="reservation-card">
+    <img [src]="reservation.image" alt="Imagem do Quarto" class="room-image">
     <div class="reservation-info">
-        <div class="reservation-details">
-            <h3>Quarto Single</h3>
-            <p>Cliente: Carlos Matheus</p>
-            <p>Check-In: 24/11/2023</p>
-            <p>Check-Out: 28/11/2023</p>
+      <div class="reservation-details">
+        <h3>{{ reservation.roomType }}</h3>
+        <div class="reservation-table">
+          <div class="reservation-column">
+            <p><strong>Cliente:</strong> {{ reservation.client }}</p>
+            <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn }}</p>
+            <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut }}</p>
+          </div>
+          <div class="reservation-column">
+            <p><strong>Check-In:</strong> {{ reservation.checkIn }}</p>
+            <p><strong>Check-Out:</strong> {{ reservation.checkOut }}</p>
+            <p><strong>Diárias:</strong> {{ reservation.nights }}</p>
+            <p><strong>Valor Total:</strong> {{ reservation.totalValue | currency:'BRL' }}</p>
+          </div>
         </div>
-        <div class="reservation-status">
-            <span class="status">Finalizada</span>
-        </div>
-        <div class="reservation-action">
-            <button class="view-more">Ver Mais</button>
-        </div>
+      </div>
+      <div class="reservation-status">
+        <span [ngClass]="getStatusClass(reservation.status)" class="status">{{ reservation.status }}</span>
+      </div>
+      <div class="reservation-action">
+        <button class="view-more" (click)="onViewMore(reservation)">Ver Mais</button>
+      </div>
     </div>
+  </div>
+
+  <app-reserve-data *ngIf="selectedReservation" [reservation]="selectedReservation" (close)="onCloseReserveData()"></app-reserve-data>
 </div>

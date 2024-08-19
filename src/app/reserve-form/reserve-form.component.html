@@ -1,14 +1,14 @@
 <div class="reserve-form-page">
     <div class="reserve-form-content">
-        <h2>Efetuar Reserva</h2>
-        <form>
-            <div class="room-info">
-                <h3>Dados do Quarto</h3>
-                <p><strong>Tipo:</strong> Suíte</p>
-                <p><strong>Capacidade:</strong> 2 pessoas</p>
-                <p><strong>Andar:</strong> 3º Andar</p>
-                <p><strong>Preço por noite:</strong> R$ 300,00</p>
-            </div>
+      <h2>Efetuar Reserva</h2>
+      <form>
+        <div class="room-info">
+          <h3>Dados do Quarto</h3>
+          <p><strong>Nome:</strong> {{ room.name }}</p>
+          <p><strong>Descrição:</strong> {{ room.description }}</p>
+          <p><strong>Preço por noite:</strong> R$ {{ room.price.toFixed(2) }}</p>
+          <p><strong>Máx. Hóspedes:</strong> {{ room.guests }}</p>
+        </div>
 
             <label for="checkInDate">Data de Check-in</label>
             <input type="date" id="checkInDate" name="checkInDate" required>
@@ -48,8 +48,8 @@
 
             <div class="button-group">
                 <button type="submit">Reservar</button>
-                <a [routerLink]="['/newReserve']" routerLinkActive="router-link-active"><button type="button" class="cancel-button">Cancelar</button></a>
-            </div>
-        </form>
-    </div>
-</div>
+                <button type="button" class="cancel-button" (click)="onClose()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>

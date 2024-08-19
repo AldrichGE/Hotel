@@ -6,8 +6,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NewRoomComponent } from './new-room/new-room.component';
-import { NewServiceComponent } from './new-service/new-service.component';
 import { ReserveFormComponent } from './reserve-form/reserve-form.component';
+import { NewHospitalityComponent } from './new-hospitality/new-hospitality.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'newReserve', component: NewReserveComponent},
   {path: 'myReserve', component: MyReservesComponent},
   {path: 'newRoom', component: NewRoomComponent},
-  {path: 'newService', component: NewServiceComponent},
+  {path: 'newHospitality', component: NewHospitalityComponent},
   {path: 'reserveForm', component: ReserveFormComponent}
 ];
 

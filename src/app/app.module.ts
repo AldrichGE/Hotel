@@ -11,9 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewRoomComponent } from './new-room/new-room.component';
-import { NewServiceComponent } from './new-service/new-service.component';
 import { ReserveFormComponent } from './reserve-form/reserve-form.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
+import { ReserveDataComponent } from './reserve-data/reserve-data.component';
+import { AuthInterceptor } from './services/auth/auth-interceptor.service';
+import { NewHospitalityComponent } from './new-hospitality/new-hospitality.component';
 
 
 @NgModule({
@@ -25,8 +27,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     RegisterComponent,
     LandingPageComponent,
     NewRoomComponent,
-    NewServiceComponent,
     ReserveFormComponent,
+    ReserveDataComponent,
+    NewHospitalityComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,12 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
