@@ -7,12 +7,12 @@
         <div class="reservation-table">
           <div class="reservation-column">
             <p><strong>Cliente:</strong> {{ reservation.client }}</p>
-            <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn }}</p>
-            <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut }}</p>
+            <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn | date:'dd/MM/yyyy' }}</p>
+            <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut | date:'dd/MM/yyyy' }}</p>
           </div>
           <div class="reservation-column">
-            <p><strong>Check-In:</strong> {{ reservation.checkIn }}</p>
-            <p><strong>Check-Out:</strong> {{ reservation.checkOut }}</p>
+            <p><strong>Check-In:</strong> {{ reservation.checkIn | date:'dd/MM/yyyy' }}</p>
+            <p><strong>Check-Out:</strong> {{ reservation.checkOut | date:'dd/MM/yyyy' }}</p>
             <p><strong>Diárias:</strong> {{ reservation.nights }}</p>
             <p><strong>Valor Total:</strong> {{ reservation.totalValue | currency:'BRL' }}</p>
           </div>

@@ -5,20 +5,14 @@
     <div class="reserve-data-info">
       <div>
         <p><strong>Cliente:</strong> {{ reservation.client }}</p>
-        <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn }}</p>
-        <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut }}</p>
-        <p>
+        <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn | date:'dd/MM/yyyy'}}</p>
+        <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut | date:'dd/MM/yyyy'}}</p>
           <label for="status"><strong>Status da Reserva:</strong></label>
-          <select id="status" [(ngModel)]="reservation.status">
-            <option value="Confirmado">Confirmado</option>
-            <option value="Finalizada">Finalizada</option>
-            <option value="Cancelada">Cancelada</option>
-          </select>
-        </p>
+          <p>{{reservation.status}}</p>
       </div>
       <div>
-        <p><strong>Check-In:</strong> {{ reservation.checkIn }}</p>
-        <p><strong>Check-Out:</strong> {{ reservation.checkOut }}</p>
+        <p><strong>Check-In:</strong> {{ reservation.checkIn | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Check-Out:</strong> {{ reservation.checkOut | date:'dd/MM/yyyy' }}</p>
         <p><strong>Diárias:</strong> {{ reservation.nights }}</p>
         <p><strong>Valor Total:</strong> {{ reservation.totalValue | currency:'BRL' }}</p>
       </div>
