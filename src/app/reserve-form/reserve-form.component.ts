@@ -93,10 +93,15 @@ export class ReserveFormComponent implements OnInit {
   }
 
   submitReservation(): void {
+    if (!this.bookingData.checkInDatePlanned || !this.bookingData.checkOutDatePlanned) {
+      alert('Por favor, preencha as datas de check-in e check-out.');
+      return;
+    }
+  
     this.calculateTotalValue();
-
+  
     console.log(this.bookingData);
-
+  
     const headers = this.createAuthHeaders();
     this.http.post<any>(this.apiUrl, this.bookingData, { headers }).subscribe(
       (response) => {

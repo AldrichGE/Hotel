@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-room',
@@ -24,7 +25,7 @@ export class NewRoomComponent implements OnInit {
 
   private apiUrl = 'http://localhost:8080/api/v1/hotel/rooms';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.fetchRooms();
@@ -35,20 +36,25 @@ export class NewRoomComponent implements OnInit {
     this.http.get<any[]>(this.apiUrl, { headers }).subscribe((data) => {
       this.rooms = data;
     }, error => {
-      console.error('Erro ao buscar os quartos', error);
+      this.showSnackBar('Erro ao buscar os quartos', 'error');
     });
   }
 
   onCreateRoom() {
-    const headers = this.createAuthHeaders();
-    const roomData = this.transformRoomData(this.newRoom);
+    if (this.isFormValid(this.newRoom)) {
+      const headers = this.createAuthHeaders();
+      const roomData = this.transformRoomData(this.newRoom);
 
-    this.http.post(this.apiUrl, roomData, { headers }).subscribe(() => {
-      this.fetchRooms();
-      this.resetForm();
-    }, error => {
-      console.error('Erro ao criar o quarto', error);
-    });
+      this.http.post(this.apiUrl, roomData, { headers }).subscribe(() => {
+        this.fetchRooms();
+        this.resetForm();
+        this.showSnackBar('Quarto criado com sucesso!', 'success');
+      }, error => {
+        this.showSnackBar('Erro ao criar o quarto', 'error');
+      });
+    } else {
+      this.showSnackBar('Por favor, preencha todos os campos obrigatórios', 'error');
+    }
   }
 
   onEdit(room: any) {
@@ -57,16 +63,21 @@ export class NewRoomComponent implements OnInit {
   }
 
   onUpdateRoom() {
-    const headers = this.createAuthHeaders();
-    const roomData = this.transformRoomData(this.selectedRoom);
+    if (this.isFormValid(this.selectedRoom)) {
+      const headers = this.createAuthHeaders();
+      const roomData = this.transformRoomData(this.selectedRoom);
 
-    this.http.put(`${this.apiUrl}/${this.selectedRoom.id}`, roomData, { headers }).subscribe(() => {
-      this.fetchRooms();
-      this.isEditMode = false;
-      this.selectedRoom = null;
-    }, error => {
-      console.error('Erro ao atualizar o quarto', error);
-    });
+      this.http.put(`${this.apiUrl}/${this.selectedRoom.id}`, roomData, { headers }).subscribe(() => {
+        this.fetchRooms();
+        this.isEditMode = false;
+        this.selectedRoom = null;
+        this.showSnackBar('Quarto atualizado com sucesso!', 'success');
+      }, error => {
+        this.showSnackBar('Erro ao atualizar o quarto', 'error');
+      });
+    } else {
+      this.showSnackBar('Por favor, preencha todos os campos obrigatórios', 'error');
+    }
   }
 
   onCancelEdit() {
@@ -94,8 +105,9 @@ export class NewRoomComponent implements OnInit {
     selectedRoomIds.forEach(id => {
       this.http.delete(`${this.apiUrl}/${id}`, { headers }).subscribe(() => {
         this.fetchRooms();
+        this.showSnackBar(`Quarto ${id} excluído com sucesso!`, 'success');
       }, error => {
-        console.error(`Erro ao excluir o quarto com ID ${id}`, error);
+        this.showSnackBar(`Erro ao excluir o quarto com ID ${id}`, 'error');
       });
     });
   }
@@ -111,10 +123,10 @@ export class NewRoomComponent implements OnInit {
 
       const headers = this.createAuthHeaders();
       this.http.post(`${this.apiUrl}/${this.selectedRoom.id}/upload-photo`, formData, { headers }).subscribe(response => {
-        console.log('Imagem enviada com sucesso:', response);
+        this.showSnackBar('Imagem enviada com sucesso!', 'success');
         this.selectedFile = null;
       }, error => {
-        console.error('Erro ao enviar a imagem', error);
+        this.showSnackBar('Erro ao enviar a imagem', 'error');
       });
     }
   }
@@ -144,5 +156,16 @@ export class NewRoomComponent implements OnInit {
       default:
         return type;
     }
+  }
+
+  private isFormValid(room: any): boolean {
+    return room.type && room.capacity && room.floor && room.price && room.description;
+  }
+
+  private showSnackBar(message: string, type: 'success' | 'error') {
+    this.snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: type === 'success' ? 'snack-bar-success' : 'snack-bar-error'
+    });
   }
 }

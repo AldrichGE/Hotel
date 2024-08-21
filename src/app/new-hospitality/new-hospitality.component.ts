@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-hospitality',
@@ -20,7 +21,11 @@ export class NewHospitalityComponent implements OnInit {
 
   private apiUrl = 'http://localhost:8080/api/v1/hotel/hospitality';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService, 
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.fetchHospitalities();
@@ -31,18 +36,23 @@ export class NewHospitalityComponent implements OnInit {
     this.http.get<any[]>(this.apiUrl, { headers }).subscribe((data) => {
       this.hospitalities = data;
     }, error => {
-      console.error('Erro ao buscar as comodidades', error);
+      this.showSnackBar('Erro ao buscar as comodidades', 'error');
     });
   }
 
   createHospitality(): void {
-    const headers = this.createAuthHeaders();
-    this.http.post(this.apiUrl, this.newHospitality, { headers }).subscribe(() => {
-      this.fetchHospitalities();
-      this.resetForm();
-    }, error => {
-      console.error('Erro ao criar a comodidade', error);
-    });
+    if (this.isFormValid(this.newHospitality)) {
+      const headers = this.createAuthHeaders();
+      this.http.post(this.apiUrl, this.newHospitality, { headers }).subscribe(() => {
+        this.fetchHospitalities();
+        this.resetForm();
+        this.showSnackBar('Serviço criado com sucesso!', 'success');
+      }, error => {
+        this.showSnackBar('Erro ao criar o serviço', 'error');
+      });
+    } else {
+      this.showSnackBar('Por favor, preencha todos os campos obrigatórios', 'error');
+    }
   }
 
   editHospitality(hospitality: any): void {
@@ -51,14 +61,19 @@ export class NewHospitalityComponent implements OnInit {
   }
 
   updateHospitality(): void {
-    const headers = this.createAuthHeaders();
-    this.http.put(`${this.apiUrl}/${this.selectedHospitality.id}`, this.selectedHospitality, { headers }).subscribe(() => {
-      this.fetchHospitalities();
-      this.isEditMode = false;
-      this.selectedHospitality = null;
-    }, error => {
-      console.error('Erro ao atualizar a comodidade', error);
-    });
+    if (this.isFormValid(this.selectedHospitality)) {
+      const headers = this.createAuthHeaders();
+      this.http.put(`${this.apiUrl}/${this.selectedHospitality.id}`, this.selectedHospitality, { headers }).subscribe(() => {
+        this.fetchHospitalities();
+        this.isEditMode = false;
+        this.selectedHospitality = null;
+        this.showSnackBar('Serviço atualizado com sucesso!', 'success');
+      }, error => {
+        this.showSnackBar('Erro ao atualizar o serviço', 'error');
+      });
+    } else {
+      this.showSnackBar('Por favor, preencha todos os campos obrigatórios', 'error');
+    }
   }
 
   onDeleteHospitalities() {
@@ -72,8 +87,9 @@ export class NewHospitalityComponent implements OnInit {
     selectedHospitalityIds.forEach(id => {
       this.http.delete(`${this.apiUrl}/${id}`, { headers }).subscribe(() => {
         this.fetchHospitalities();
+        this.showSnackBar(`Serviço ${id} excluído com sucesso!`, 'success');
       }, error => {
-        console.error(`Erro ao excluir a comodidade com ID ${id}`, error);
+        this.showSnackBar(`Erro ao excluir o serviço com ID ${id}`, 'error');
       });
     });
   }
@@ -88,10 +104,21 @@ export class NewHospitalityComponent implements OnInit {
     this.selectedHospitality = null;
   }
 
+  private isFormValid(hospitality: any): boolean {
+    return hospitality.name && hospitality.price && hospitality.description;
+  }
+
   private createAuthHeaders(): HttpHeaders {
     const token = this.authService.getToken();
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`
+    });
+  }
+
+  private showSnackBar(message: string, type: 'success' | 'error') {
+    this.snackBar.open(message, '', {
+      duration: 3000,
+      panelClass: type === 'success' ? 'snack-bar-success' : 'snack-bar-error'
     });
   }
 }
