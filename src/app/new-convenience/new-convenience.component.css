@@ -1,4 +1,4 @@
-.new-room-container {
+.new-convenience-container {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -10,8 +10,8 @@
     border: 1px solid #ddd;
 }
 
-.new-room-form-container,
-.room-list-container {
+.new-convenience-form-container,
+.convenience-list-container {
     width: 48%;
     padding: 20px;
     background-color: #ffffff;
@@ -22,8 +22,8 @@
     position: relative;
 }
 
-.new-room-form-container h2,
-.room-list-container h2 {
+.new-convenience-form-container h2,
+.convenience-list-container h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 24px;
@@ -45,7 +45,7 @@
     width: 100%;
 }
 
-.new-room-form-container label {
+.new-convenience-form-container label {
     display: block;
     margin-bottom: 5px;
     font-weight: 600;
@@ -53,9 +53,9 @@
     font-size: 16px;
 }
 
-.new-room-form-container select,
-.new-room-form-container input,
-.new-room-form-container textarea {
+.new-convenience-form-container select,
+.new-convenience-form-container input,
+.new-convenience-form-container textarea {
     width: 94%;
     padding: 10px;
     margin-bottom: 15px;
@@ -65,17 +65,13 @@
     resize: none;
 }
 
-.image-upload-group {
-    margin-top: 20px;
-}
-
-.new-room-form-container .button-group {
+.new-convenience-form-container .button-group {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.new-room-form-container .button-group button {
+.new-convenience-form-container .button-group button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -83,31 +79,29 @@
     font-size: 16px;
 }
 
-.new-room-form-container .button-group .cancel-button {
+.new-convenience-form-container .button-group .cancel-button {
     background-color: #e74c3c;
     color: #fff;
 }
 
-.new-room-form-container .button-group .cancel-button:hover {
+.new-convenience-form-container .button-group .cancel-button:hover {
     background-color: #bb564b;
     transition: all 0.5s;
     transform: scale(0.98);
 }
 
-.new-room-form-container .button-group button[type="submit"],
-.new-room-form-container .button-group button[type="button"]:nth-child(3) {
+.new-convenience-form-container .button-group button[type="submit"] {
     background-color: #3498db;
     color: #fff;
 }
 
-.new-room-form-container .button-group button[type="submit"]:hover,
-.new-room-form-container .button-group button[type="button"]:nth-child(3):hover {
+.new-convenience-form-container .button-group button[type="submit"]:hover {
     background-color: #2980b9;
     transition: all 0.5s;
     transform: scale(0.98);
 }
 
-.room-list-container {
+.convenience-list-container {
     width: 48%;
     padding: 20px;
     background-color: #ffffff;
@@ -116,30 +110,31 @@
     border: 1px solid #ddd;
     margin: 10px;
     position: relative;
-    height: 600px;
     display: flex;
     flex-direction: column;
+    max-height: 500px;
 }
 
-.room-list {
+.convenience-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1;
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 250px;
+    flex-grow: 1;
 }
 
-.room-item {
+.convenience-item {
     display: flex;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
     color: #555;
     font-size: 16px;
+    position: relative;
 }
 
-.room-item:last-child {
+.convenience-item:last-child {
     border-bottom: none;
 }
 
@@ -149,6 +144,8 @@
     color: #3498db;
     cursor: pointer;
     font-size: 16px;
+    position: absolute;
+    right: 10px;
 }
 
 .edit-button:hover {
@@ -161,8 +158,8 @@
 
 .delete-button-container {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 10px;
 }
 
 .delete-button {
@@ -193,9 +190,9 @@
     margin-right: 13px;
 }
 
-.ui-checkbox,
-.ui-checkbox *,
-.ui-checkbox *::before,
+.ui-checkbox, 
+.ui-checkbox *, 
+.ui-checkbox *::before, 
 .ui-checkbox *::after {
     box-sizing: border-box;
 }

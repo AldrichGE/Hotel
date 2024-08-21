@@ -1,0 +1,32 @@
+<div class="update-user-container">
+    <div class="user-list-container">
+        <h2>Lista de Usuários</h2>
+        <ul class="user-list">
+            <li class="user-item" *ngFor="let user of users">
+                <span class="user-id">ID: {{ user.id }}</span>
+                <span class="user-name">{{ user.firstName }}</span>
+                <span class="user-lastname">{{ user.lastName }}</span>
+                <span class="user-role">{{ user.role }}</span>
+                <button class="edit-button" (click)="editUser(user)">Editar</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="update-user-form-container" *ngIf="isEditMode">
+        <h2>Editar Usuário</h2>
+        <form #userForm="ngForm">
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" [(ngModel)]="selectedUser.role" required>
+                    <option value="ADMINISTRATOR">Administrador</option>
+                    <option value="EMPLOYEE">Funcionário</option>
+                    <option value="CLIENT">Cliente</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button type="submit" (click)="updateUser()">Salvar</button>
+                <button type="button" class="cancel-button" (click)="resetForm()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

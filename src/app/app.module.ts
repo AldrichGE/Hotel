@@ -16,6 +16,11 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common
 import { ReserveDataComponent } from './reserve-data/reserve-data.component';
 import { AuthInterceptor } from './services/auth/auth-interceptor.service';
 import { NewHospitalityComponent } from './new-hospitality/new-hospitality.component';
+import { AuthGuard } from './services/auth/guard/auth.guard';
+import { RoleGuard } from './services/auth/guard/role.guard';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NewConvenienceComponent } from './new-convenience/new-convenience.component';
+import { UpdateUsersComponent } from './update-users/update-users.component';
 
 
 @NgModule({
@@ -30,13 +35,18 @@ import { NewHospitalityComponent } from './new-hospitality/new-hospitality.compo
     ReserveFormComponent,
     ReserveDataComponent,
     NewHospitalityComponent,
+    NewConvenienceComponent,
+    UpdateUsersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [
+    AuthGuard,
+    RoleGuard,
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),

@@ -18,6 +18,8 @@ export class AuthService {
         tap((response: any) => {
           if (response && response.token) {
             localStorage.setItem('authToken', response.token);
+            localStorage.setItem('userId', response.userId);
+            localStorage.setItem('userRole', this.jwtHelper.decodeToken(response.token).role);
           }
         })
       );
@@ -25,6 +27,8 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userRole');
   }
 
   getToken(): string | null {
@@ -38,9 +42,23 @@ export class AuthService {
     const token = this.getToken();
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      return decodedToken ? decodedToken.userId : null;
+      return decodedToken ? decodedToken.id : null;
     }
     return null;
+  }
+
+  getUserRole(): string | null {
+    return localStorage.getItem('userRole');
+  }
+
+  isAdminOrEmployee(): boolean {
+    const role = this.getUserRole();
+    return role === 'ADMINISTRATOR' || role === 'EMPLOYEE';
+  }
+
+  isAdministrator(): boolean {
+    const role = this.getUserRole();
+    return role === 'ADMINISTRATOR';
   }
 
   register(userData: any): Observable<any> {

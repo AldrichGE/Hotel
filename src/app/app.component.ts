@@ -11,6 +11,11 @@ export class AppComponent {
   title = 'Hotel';
 
   constructor(private router: Router, private authService: AuthService) {}
+  isSidebarClosed = false;
+
+  toggleSidebar() {
+    this.isSidebarClosed = !this.isSidebarClosed;
+  }
 
   isLandingPage(): boolean {
     return this.router.url === '/';
@@ -28,5 +33,13 @@ export class AppComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
     console.log("Logout bem sucedido.");
+  }
+
+  get isAdminOrEmployee(): boolean {
+    return this.authService.isAdminOrEmployee();
+  }
+
+  get isAdministrator(): boolean {
+    return this.authService.isAdministrator();
   }
 }

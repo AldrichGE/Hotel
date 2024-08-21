@@ -8,16 +8,22 @@ import { RegisterComponent } from './register/register.component';
 import { NewRoomComponent } from './new-room/new-room.component';
 import { ReserveFormComponent } from './reserve-form/reserve-form.component';
 import { NewHospitalityComponent } from './new-hospitality/new-hospitality.component';
+import { AuthGuard } from './services/auth/guard/auth.guard';
+import { RoleGuard } from './services/auth/guard/role.guard';
+import { NewConvenienceComponent } from './new-convenience/new-convenience.component';
+import { UpdateUsersComponent } from './update-users/update-users.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'newReserve', component: NewReserveComponent},
-  {path: 'myReserve', component: MyReservesComponent},
-  {path: 'newRoom', component: NewRoomComponent},
-  {path: 'newHospitality', component: NewHospitalityComponent},
-  {path: 'reserveForm', component: ReserveFormComponent}
+  { path: 'newReserve', component: NewReserveComponent, canActivate: [AuthGuard] },
+  { path: 'myReserve', component: MyReservesComponent, canActivate: [AuthGuard] },
+  { path: 'newRoom', component: NewRoomComponent, canActivate: [AuthGuard, RoleGuard], data: {roles: ['ADMINISTRATOR', 'EMPLOYEE']} },
+  { path: 'newHospitality', component: NewHospitalityComponent, canActivate: [AuthGuard, RoleGuard], data: {roles: ['ADMINISTRATOR', 'EMPLOYEE']} },
+  { path: 'newConvenience', component: NewConvenienceComponent, canActivate: [AuthGuard, RoleGuard], data: {roles: ['ADMINISTRATOR', 'EMPLOYEE']} },
+  { path: 'updtUser', component: UpdateUsersComponent, canActivate: [AuthGuard, RoleGuard], data: {roles: ['ADMINISTRATOR']} },
+  { path: 'reserveForm', component: ReserveFormComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

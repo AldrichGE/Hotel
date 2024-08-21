@@ -1,0 +1,149 @@
+.update-user-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.user-list-container,
+.update-user-form-container {
+    width: 58%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin: 10px;
+    position: relative;
+}
+
+.user-list-container h2,
+.update-user-form-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 250px;
+    flex-grow: 1;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    font-size: 16px;
+    position: relative;
+}
+
+.user-item span {
+    flex: 1;
+    padding: 0 5px;
+}
+
+.user-id {
+    flex: 0.5;
+    font-weight: bold;
+}
+
+.user-name {
+    flex: 1;
+    padding-right: 5px;
+}
+
+.user-lastname {
+    flex: 1;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.user-role {
+    flex: 1;
+    padding-left: 5px;
+    position: relative;
+}
+
+.edit-button {
+    background-color: transparent;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 14px;
+    right: 10px;
+}
+
+.edit-button:hover {
+    color: #2980b9;
+}
+
+.update-user-form-container {
+    margin-top: 20px;
+    width: 250px;
+}
+
+.update-user-form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
+}
+
+.update-user-form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.update-user-form-container .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.update-user-form-container .button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.update-user-form-container .button-group .cancel-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.update-user-form-container .button-group .cancel-button:hover {
+    background-color: #bb564b;
+    transition: all 0.5s;
+    transform: scale(0.98);
+}
+
+.update-user-form-container .button-group button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.update-user-form-container .button-group button[type="submit"]:hover {
+    background-color: #2980b9;
+    transition: all 0.5s;
+    transform: scale(0.98);
+}

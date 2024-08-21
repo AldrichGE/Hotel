@@ -1,28 +1,43 @@
 <div class="my-reserves">
-  <div *ngFor="let reservation of reservations" class="reservation-card">
-    <img [src]="reservation.image" alt="Imagem do Quarto" class="room-image">
-    <div class="reservation-info">
-      <div class="reservation-details">
-        <h3>{{ reservation.roomType }}</h3>
-        <div class="reservation-table">
-          <div class="reservation-column">
-            <p><strong>Cliente:</strong> {{ reservation.client }}</p>
-            <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn | date:'dd/MM/yyyy' }}</p>
-            <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut | date:'dd/MM/yyyy' }}</p>
-          </div>
-          <div class="reservation-column">
-            <p><strong>Check-In:</strong> {{ reservation.checkIn | date:'dd/MM/yyyy' }}</p>
-            <p><strong>Check-Out:</strong> {{ reservation.checkOut | date:'dd/MM/yyyy' }}</p>
-            <p><strong>Diárias:</strong> {{ reservation.nights }}</p>
-            <p><strong>Valor Total:</strong> {{ reservation.totalValue | currency:'BRL' }}</p>
+  <div class="reservations-list">
+    <div class="search-bar">
+      <input class="filter"
+        type="text"
+        placeholder="Filtrar por nome, preço ou data"
+        [(ngModel)]="searchText"
+        (input)="filterReservations()"
+      />
+    </div>
+
+    <div *ngIf="filteredReservations.length === 0" class="no-reservations">
+      <p>Ainda não há reservas.</p>
+    </div>
+
+    <div *ngFor="let reservation of filteredReservations" class="reservation-card">
+      <img [src]="reservation.image" alt="Imagem do Quarto" class="room-image">
+      <div class="reservation-info">
+        <div class="reservation-details">
+          <h3>{{ reservation.roomType }}</h3>
+          <div class="reservation-table">
+            <div class="reservation-column">
+              <p><strong>Cliente:</strong> {{ reservation.client }}</p>
+              <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn | date:'dd/MM/yyyy' }}</p>
+              <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut | date:'dd/MM/yyyy' }}</p>
+            </div>
+            <div class="reservation-column">
+              <p><strong>Check-In:</strong> {{ reservation.checkIn | date:'dd/MM/yyyy' }}</p>
+              <p><strong>Check-Out:</strong> {{ reservation.checkOut | date:'dd/MM/yyyy' }}</p>
+              <p><strong>Diárias:</strong> {{ reservation.nights }}</p>
+              <p><strong>Valor Total:</strong> {{ reservation.totalValue | currency:'BRL' }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="reservation-status">
-        <span [ngClass]="getStatusClass(reservation.status)" class="status">{{ reservation.status }}</span>
-      </div>
-      <div class="reservation-action">
-        <button class="view-more" (click)="onViewMore(reservation)">Ver Mais</button>
+        <div class="reservation-status">
+          <span [ngClass]="getStatusClass(reservation.status)" class="status">{{ reservation.status }}</span>
+        </div>
+        <div class="reservation-action">
+          <button class="view-more" (click)="onViewMore(reservation)">Ver Mais</button>
+        </div>
       </div>
     </div>
   </div>

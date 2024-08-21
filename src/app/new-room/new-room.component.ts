@@ -11,6 +11,7 @@ export class NewRoomComponent implements OnInit {
   isEditMode: boolean = false;
   selectedRoom: any = null;
   rooms: any[] = [];
+  selectedFile: File | null = null;
 
   newRoom = {
     type: 'single',
@@ -41,9 +42,7 @@ export class NewRoomComponent implements OnInit {
   onCreateRoom() {
     const headers = this.createAuthHeaders();
     const roomData = this.transformRoomData(this.newRoom);
-  
-    console.log('Dados enviados:', roomData);
-  
+
     this.http.post(this.apiUrl, roomData, { headers }).subscribe(() => {
       this.fetchRooms();
       this.resetForm();
@@ -91,9 +90,7 @@ export class NewRoomComponent implements OnInit {
     const selectedRoomIds = this.rooms
       .filter(room => room.selected)
       .map(room => room.id);
-  
-    console.log('IDs selecionados para deletar:', selectedRoomIds);
-  
+
     selectedRoomIds.forEach(id => {
       this.http.delete(`${this.apiUrl}/${id}`, { headers }).subscribe(() => {
         this.fetchRooms();
@@ -101,6 +98,25 @@ export class NewRoomComponent implements OnInit {
         console.error(`Erro ao excluir o quarto com ID ${id}`, error);
       });
     });
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUploadImage() {
+    if (this.selectedRoom && this.selectedFile) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+
+      const headers = this.createAuthHeaders();
+      this.http.post(`${this.apiUrl}/${this.selectedRoom.id}/upload-photo`, formData, { headers }).subscribe(response => {
+        console.log('Imagem enviada com sucesso:', response);
+        this.selectedFile = null;
+      }, error => {
+        console.error('Erro ao enviar a imagem', error);
+      });
+    }
   }
 
   private createAuthHeaders(): HttpHeaders {

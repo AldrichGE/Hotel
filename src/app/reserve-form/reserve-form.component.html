@@ -1,55 +1,41 @@
 <div class="reserve-form-page">
     <div class="reserve-form-content">
-      <h2>Efetuar Reserva</h2>
-      <form>
-        <div class="room-info">
-          <h3>Dados do Quarto</h3>
-          <p><strong>Nome:</strong> {{ room.name }}</p>
-          <p><strong>Descrição:</strong> {{ room.description }}</p>
-          <p><strong>Preço por noite:</strong> R$ {{ room.price.toFixed(2) }}</p>
-          <p><strong>Máx. Hóspedes:</strong> {{ room.guests }}</p>
-        </div>
+        <h2>Efetuar Reserva</h2>
+        <form (ngSubmit)="submitReservation()">
+            <div class="room-info">
+                <h3>Dados do Quarto</h3>
+                <p><strong>Nome:</strong> {{ room.name }}</p>
+                <p><strong>Descrição:</strong> {{ room.description }}</p>
+                <p><strong>Preço por noite:</strong> R$ {{ room.price.toFixed(2) }}</p>
+                <p><strong>Máx. Hóspedes:</strong> {{ room.guests }}</p>
+            </div>
 
             <label for="checkInDate">Data de Check-in</label>
-            <input type="date" id="checkInDate" name="checkInDate" required>
+            <input type="date" id="checkInDate" name="checkInDate" [(ngModel)]="bookingData.checkInDatePlanned" (change)="onDateChange()" required>
 
             <label for="checkOutDate">Data de Check-out</label>
-            <input type="date" id="checkOutDate" name="checkOutDate" required>
+            <input type="date" id="checkOutDate" name="checkOutDate" [(ngModel)]="bookingData.checkOutDatePlanned" (change)="onDateChange()" required>
 
             <label for="days">Dias de Hospedagem</label>
-            <input type="number" id="days" name="days" min="1" required>
+            <input type="number" id="days" name="days" [(ngModel)]="bookingData.days" readonly required>
 
             <label>Hospitalidades Extras</label>
             <div class="hospitalities">
-                <label>
-                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="wifi"> Wi-Fi
-                </label>
-                <label>
-                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="breakfast"> Café da Manhã
-                </label>
-                <label>
-                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="parking"> Estacionamento
-                </label>
-                <label>
-                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="spa"> Acesso ao Spa
-                </label>
-                <label>
-                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="gym"> Academia
-                </label>
-                <label>
-                    <input type="checkbox" class="ui-checkbox" name="hospitalities" value="pool"> Piscina
+                <label *ngFor="let hospitality of hospitalities">
+                    <input type="checkbox" class="ui-checkbox" name="hospitalities" [value]="hospitality.id" (change)="onHospitalityChange($event)">
+                    {{ hospitality.name }} - R$ {{ hospitality.price.toFixed(2) }}
                 </label>
             </div>
 
             <div class="total-value">
                 <label for="totalValue">Valor Total:</label>
-                <p id="totalValue">R$ 0,00</p>
+                <p id="totalValue">R$ {{ bookingData.totalValue.toFixed(2) }}</p>
             </div>
 
             <div class="button-group">
                 <button type="submit">Reservar</button>
                 <button type="button" class="cancel-button" (click)="onClose()">Cancelar</button>
-              </div>
-            </form>
-          </div>
-        </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -7,8 +7,8 @@
         <p><strong>Cliente:</strong> {{ reservation.client }}</p>
         <p><strong>Previsão de Check-In:</strong> {{ reservation.predictedCheckIn | date:'dd/MM/yyyy'}}</p>
         <p><strong>Previsão de Check-Out:</strong> {{ reservation.predictedCheckOut | date:'dd/MM/yyyy'}}</p>
-          <label for="status"><strong>Status da Reserva:</strong></label>
-          <p>{{reservation.status}}</p>
+        <label for="status"><strong>Status da Reserva:</strong></label>
+        <p>{{reservation.status}}</p>
       </div>
       <div>
         <p><strong>Check-In:</strong> {{ reservation.checkIn | date:'dd/MM/yyyy' }}</p>
@@ -19,6 +19,16 @@
     </div>
     
     <div class="button-group">
+      <button *ngIf="isAdminOrEmployee && reservation.status !== 'Checked-In' && reservation.status !== 'Checked-Out'"
+              (click)="onCheckIn()" 
+              class="check-in-button">
+        Check-In
+      </button>
+      <button *ngIf="isAdminOrEmployee && reservation.status !== 'Checked-In' && reservation.status !== 'Checked-Out'"
+              (click)="onCheckOut()" 
+              class="check-out-button">
+        Check-Out
+      </button>
       <button (click)="onCancel()" class="cancel-button">Cancelar Reserva</button>
       <button (click)="onClose()">Fechar</button>
     </div>
@@ -26,7 +36,7 @@
     <div *ngIf="showCancelConfirmation" class="cancel-confirmation-overlay">
       <div class="cancel-confirmation-content">
         <p>Tem certeza que deseja cancelar a reserva?</p>
-        <button class="confirm-button">Sim</button>
+        <button class="confirm-button" (click)="confirmCancelBooking()">Sim</button>
         <button class="cancel-button" (click)="onCloseCancel()">Não</button>
       </div>
     </div>

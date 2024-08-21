@@ -1,4 +1,5 @@
 <div class="new-room-container">
+    <!-- Formulário de Cadastro -->
     <div class="new-room-form-container" *ngIf="!isEditMode">
         <h2>Cadastrar Novo Quarto</h2>
         <form (ngSubmit)="onCreateRoom()">
@@ -32,12 +33,6 @@
                     <textarea id="description" name="description" [(ngModel)]="newRoom.description" placeholder="Descrição do quarto" rows="4" required></textarea>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group full-width">
-                    <label for="image" class="image-label">Anexar Imagem</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                </div>
-            </div>
             <div class="button-group">
                 <button type="submit">Cadastrar</button>
                 <button type="button" class="cancel-button" (click)="resetForm()">Cancelar</button>
@@ -45,7 +40,7 @@
         </form>
     </div>
 
-    <!--Formulário de edição-->
+    <!-- Formulário de Edição -->
     <div class="new-room-form-container" *ngIf="isEditMode">
         <h2>Editar Quarto</h2>
         <form (ngSubmit)="onUpdateRoom()">
@@ -79,15 +74,14 @@
                     <textarea id="description" name="description" [(ngModel)]="selectedRoom.description" placeholder="Descrição do quarto" rows="4" required></textarea>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group full-width">
-                    <label for="image" class="image-label">Anexar Imagem</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                </div>
+            <div class="form-group full-width image-upload-group">
+                <label for="image-upload" class="image-upload-label">Escolher Imagem</label>
+                <input type="file" id="image-upload" (change)="onFileSelected($event)" accept="image/*">
             </div>
             <div class="button-group">
                 <button type="submit">Salvar</button>
                 <button type="button" class="cancel-button" (click)="onCancelEdit()">Cancelar</button>
+                <button type="button" (click)="onUploadImage()">Subir Imagem</button>
             </div>
         </form>
     </div>
